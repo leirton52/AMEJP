@@ -1,0 +1,21 @@
+Gerar um arquivo de log para os testes em vez de salvar na propria planilha: 
+
+Sub GravarLog(Mensagem As String)
+
+    Dim Diretorio As String
+    Dim NomeArquivo As String
+    Dim NumeroArquivo As Integer
+    Dim DataHora As String
+
+    Diretorio = ActiveWorkbook.Path
+    NomeArquivo = Diretorio & "\" & ActiveWorkbook.Name & ".log"
+    NumeroArquivo = FreeFile
+    DataHora = Now
+
+    Open NomeArquivo For Append As #NumeroArquivo
+   
+    Print #NumeroArquivo, DataHora & " - " & Mensagem
+   
+    Close #NumeroArquivo
+
+End Sub
